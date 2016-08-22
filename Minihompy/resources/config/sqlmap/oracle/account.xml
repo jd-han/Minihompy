@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="account.accountDAO">
+	<resultMap id="accountMap" type="account">
+		<result column="SORT_NO" property="sortNo" />
+		<result column="USER_NO" property="userNo" />
+		<result column="NAME" property="categoryName" />
+		<result column="TRAN_DATE" property="tranDate" />
+		<result column="PAYMENT" property="payment" />
+		<result column="DESCRIPTION" property="description" />
+		<result column="NOTE" property="note" />
+		<result column="AMOUNT" property="amount" />
+	</resultMap>
+	
+	<!-- 최근 10개 거래조회 -->
+	<select id="selectRecentAccount" resultMap="accountMap">
+		select *
+		from(
+			select ROWNUM AS rnum, *		
+			  from MINIHOMPY_ACCOUNT
+		  order by TRAN_DATE desc
+			 where USER_NO = #{USER_NO}		
+		)
+		where rnum<10 
+	</select>
+	
+	
+	<!-- ############################################################# -->
+	<insert id="insertAccount" parameterType="account">
+	    <selectKey keyProperty="no" order="BEFORE" resultType="int">
+	        select s86_board_no.nextVal from dual
+	    </selectKey>
+	    insert into t86_board(no, title, writer, content) 
+	    values (#{no}, #{title}, #{writer}, #{content})                               
+	</insert>
+	
+	<!-- 글 수정 -->
+	<update id="updateBoard" parameterType="board">
+		update t86_board
+		   set
+			   title = #{title},
+			   content = #{content}
+		 where no = #{no}
+	</update>
+	
+	<!-- 글 삭제 -->
+	<delete id="deleteBoard" parameterType="int">
+		delete from t86_board
+		where no = #{no}
+	</delete>
+	
+	<!-- 파일 등록 -->
+	<insert id="insertBoardFile" parameterType="boardFile">
+		insert into t86_board_file(file_no, no, ori_file_name, real_file_name, file_path, file_size)
+		values (s86_board_file_no.nextVal, #{no}, #{oriFileName}, #{realFileName}, #{filePath}, #{fileSize})
+	</insert>
+	
+	<resultMap type="boardFile" id="boardFileMap">
+		<result column="file_no" property="fileNo"/>
+		<result column="no" property="no"/>
+		<result column="ori_file_name" property="oriFileName"/>
+		<result column="real_file_name" property="realFileName"/>
+		<result column="file_path" property="filePath"/>
+		<result column="file_size" property="fileSize"/>
+	</resultMap>
+	
+	
+	<!-- 글 번호로 파일 조회 -->
+	<select id="selectBoardFileByNo" parameterType="int" resultType="boardFile">
+	    select file_no as fileNo,
+	           no,
+	           ori_file_name as oriFileName,
+	           real_file_name as realFileName,
+	           file_path as filePath,
+	           file_size as fileSize
+	      from t86_board_file
+	     where no = #{no}
+	</select>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertBoardComment" parameterType="boardComment">
+		insert into t86_board_comment(comment_no, no, writer, content)
+		values (s86_board_comment_no.nextVal, #{no}, #{writer}, #{content})
+	</insert>
+	
+	<!-- 글 번호로 댓글 조회 -->
+	<select id="selectBoardCommentByNo" parameterType="int" resultType="boardComment">
+		select comment_no as commentNo,
+			   no,
+			   writer,
+			   content,
+			   reg_date as regDate
+		  from t86_board_comment
+		 where no = #{no}
+		 order by comment_no desc
+	</select>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="deleteBoardComment" parameterType="int">
+		delete from t86_board_comment
+		where comment_no = #{commentNo}
+	</delete>
+	
+	<!-- 댓글 번호로 댓글 조회 -->
+	<select id="selectBoardCommentByCommentNo" parameterType="int" resultType="boardComment">
+		select comment_no as commentNo,
+			   no,
+			   writer,
+			   content,
+			   reg_date as regDate
+		  from t86_board_comment
+		 where comment_no = #{commentNo}
+		 order by comment_no desc
+	</select>
+	
+	<!-- 댓글 수정 -->
+	<update id="updateBoardComment" parameterType="boardComment">
+		update t86_board_comment
+		set
+			content = #{content}
+		where
+			commentNo = #{commentNo}
+	
+	</update>
+</mapper>

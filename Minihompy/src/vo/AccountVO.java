@@ -1,4 +1,7 @@
 package vo;
+
+import java.util.Date;
+
 /*
  *  sort_no number primary key,
 	user_no number,
@@ -16,7 +19,19 @@ package vo;
 
 public class AccountVO {
 	private int sortNo;
-	private String userName;
+	private int userNo;
+	private String categoryName;
+	private Date tranDate;
+	private String payment;
+	private String description;
+	private String note;
+	private int amount;
+	
+	
+	
+	
+	
+	
 	
 	
 

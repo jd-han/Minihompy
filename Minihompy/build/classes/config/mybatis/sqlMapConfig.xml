@@ -8,8 +8,9 @@
 	
 	<!-- SQL의 결과를 담을 VO 객체들의 별칭을 설정하여 사용의 편의를 도모  -->
 	<typeAliases>
-		<typeAlias alias="board" type="vo.FriendVO" />
-		<typeAlias alias="board" type="vo.DiaryVO" />
+		<typeAlias alias="friend" type="vo.FriendVO" />
+		<typeAlias alias="diary" type="vo.DiaryVO" />
+		<typeAlias alias="account" type="vo.AccountVO" />
 	</typeAliases>
 	
 	<environments default="development">
@@ -26,6 +27,7 @@
 
 	<mappers>
 		<mapper resource="config/sqlmap/oracle/diary.xml"/>
+		<mapper resource="config/sqlmap/oracle/account.xml"/>
 	</mappers>
 	
 </configuration>
