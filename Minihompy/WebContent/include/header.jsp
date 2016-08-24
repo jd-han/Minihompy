@@ -49,7 +49,7 @@
             <li class="active"><a href="#main">메인</a></li>
             <li><a href="#diary">일기</a></li>
             <li><a href="#album">사진첩</a></li>
-            <li><a href="#">가계부</a></li>
+            <li><a href="/">가계부</a></li>
             <li><a href="#friend">친구</a></li>
             <li><a href="#">방명록</a></li>
             <li><a href="#login">로그인</a></li>
