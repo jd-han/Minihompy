@@ -15,10 +15,6 @@
 	</resultMap>
 	
 	<!-- 최근 10개 거래조회 -->
-	<!-- 
-	<select id="selectRecentAccount" resultMap="accountMap" parameterType="int">
-	</select>
-	 -->
 	
 	<select id="selectRecentAccount" parameterType="int" resultMap="accountMap">
 		select *
@@ -35,12 +31,9 @@
 	
 	<!-- 거래 추가 -->
 	<insert id="insertAccount" parameterType="account">
-	    <selectKey keyProperty="sortNo" order="BEFORE" resultType="int">
-	        select sequence s_minihompy_account_sort_no.nextVal from dual
-	    </selectKey>
 	    insert into MINIHOMPY_ACCOUNT(SORT_NO, USER_NO, CATEGORY_NO, TRAN_DATE
 	    								, PAYMENT, DESCRIPTION, NOTE, AMOUNT) 
-	    values (#{sortNo}, #{userNo}, #{categoryNo}, #{conttranDate}
+	    values (s_minihompy_account_sort_no.nextVal, #{userNo}, #{categoryNo}, #{tranDate}
 	    		, #{payment}, #{description}, #{note}, #{amount})                               
 	</insert>
 	
@@ -49,9 +42,9 @@
 		update MINIHOMPY_ACCOUNT
 		   set
 		   	   CATEGORY_NO = #{categoryNo},
-			   TRAN_DATE = #{tranDate}
+			   TRAN_DATE = #{tranDate},
 		   	   PAYMENT = #{payment},
-			   DESCRIPTION = #{description}
+			   DESCRIPTION = #{description},
 		   	   NOTE = #{note},		   	   
 			   AMOUNT = #{amount}
 		 where sort_no = #{sortNo}
@@ -62,6 +55,17 @@
 		delete from MINIHOMPY_ACCOUNT
 		where sort_no = #{sortNo}
 	</delete>
+	
+	
+	<!-- 거래 1건 -->
+	<select id="selectAccountByNo" parameterType="int" resultMap="accountMap">
+		select account.*, category.name		
+			  from MINIHOMPY_ACCOUNT account
+			  	   , minihompy_category category
+			 where SORT_NO = #{NO}
+			   and account.category_no = category.category_no
+	</select>
+	
 	<!-- ############################################################# -->
 
 </mapper>

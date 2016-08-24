@@ -16,7 +16,7 @@
     <div class="container" id="maincontainer">
       <div class="page-header">
       	<!-- 제목 -->
-        <h1>가계부</h1>
+        <c:import url="/include/accountTop.jsp"/>
       </div>
       <h4>최근 10건 거래내역</h4>
       
@@ -37,7 +37,7 @@
 			</tr>
 		</c:forEach>
 		
-		<c:if test="${empty accountlist}">
+		<c:if test="${empty recentAccountList}">
 			<tr><td colspan='3'>거래내역이 존재하지 않습니다.</td></tr>
 		</c:if>
 		</table>

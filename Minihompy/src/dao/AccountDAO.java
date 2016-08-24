@@ -14,13 +14,22 @@ public class AccountDAO {
 		return session.selectList("dao.AccountDAO.selectRecentAccount", userNo);
 	}
 	public int insertAccount(AccountVO account){
-		return session.insert("dao.AccountDAO.insertAccount", account);
+		int result = session.insert("dao.AccountDAO.insertAccount", account);
+		session.commit();
+		return result;
 	}
 	public int updateAccount(AccountVO account){
-		return session.update("dao.AccountDAO.updateAccount", account);
+		int result = session.update("dao.AccountDAO.updateAccount", account);
+		session.commit();
+	    return result;
 	}
 	public int deleteAccount(int sortNo){
-		return session.delete("dao.AccountDAO.deleteAccount", sortNo);
+		int result = session.delete("dao.AccountDAO.deleteAccount", sortNo);
+		session.commit();
+		return result;
+	}
+	public AccountVO selectAccountByNo(int findNo) {
+		return session.selectOne("dao.AccountDAO.selectAccountByNo", findNo);
 	}
 	
 	
