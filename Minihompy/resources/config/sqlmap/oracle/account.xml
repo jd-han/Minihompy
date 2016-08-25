@@ -57,7 +57,7 @@
 	</delete>
 	
 	
-	<!-- 거래 1건 -->
+	<!-- 거래 1건 detail -->
 	<select id="selectAccountByNo" parameterType="int" resultMap="accountMap">
 		select account.*, category.name		
 			  from MINIHOMPY_ACCOUNT account
@@ -67,5 +67,13 @@
 	</select>
 	
 	<!-- ############################################################# -->
+	<!-- 검색하기 -->
+	<!-- ############################################################# -->
+
+	<select id="selectByCT">
+	
+	</select>
+
+
 
 </mapper>
