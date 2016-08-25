@@ -46,7 +46,7 @@
 		</tr>
 		<tr>
 			<th>날짜</th>
-			<fmt:formatDate var="regDate" value="${account.tranDate}" pattern="yyyy-MM-dd HH:mm:ss" />
+			<fmt:formatDate var="regDate" value="${account.tranDate}" pattern="yyyy/MM/dd HH:mm:ss" />
 			<td><c:out value="${regDate}" /></td>
 		</tr>
 		<tr>

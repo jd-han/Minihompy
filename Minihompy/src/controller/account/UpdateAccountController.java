@@ -20,6 +20,7 @@ import vo.AccountVO;
 @WebServlet("/account/updateAccount")
 public class UpdateAccountController extends HttpServlet {
 
+	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
@@ -36,18 +37,17 @@ public class UpdateAccountController extends HttpServlet {
 		try {
 			account.setTranDate(new SimpleDateFormat("yyyy/MM/dd HH:mm:ss").parse(request.getParameter("tranDate")));
 		} catch (ParseException e) {
+			System.out.println("수정시 날짜 오류");
 			e.printStackTrace();
 		}
 		
 		
-		
-		
-		
-		
 		new AccountDAO().updateAccount(account);
 		
-		RequestDispatcher rd = request.getRequestDispatcher("/account/detailAccount?no=" + account.getSortNo());
-		rd.forward(request, response);
+		response.sendRedirect(request.getContextPath()+"/account/detailAccount?no=" + account.getSortNo());
+		
+//		RequestDispatcher rd = request.getRequestDispatcher("/account/detailAccount?no=" + account.getSortNo());
+//		rd.forward(request, response);
 	}
 	
 }

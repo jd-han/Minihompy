@@ -63,7 +63,7 @@
 		<tr>
 			<th>날짜</th>			
 			<td>
-            <input type="text" name="tranDate">
+            <input type="text" name="tranDate">yyyy/MM/dd HH:mm:ss 형식
             </td>			
 		</tr>
 		<tr>

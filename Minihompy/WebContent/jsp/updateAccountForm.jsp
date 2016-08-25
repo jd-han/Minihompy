@@ -62,8 +62,9 @@
 		</tr>
 		<tr>
 			<th>날짜</th>
-			<fmt:formatDate var="regDate" value="${account.tranDate}" pattern="yyyy-MM-dd HH:mm:ss" />
-			<td><input type="text" value="<c:out value="${regDate}"/>" name="tranDate"></td>
+			<fmt:formatDate var="regDate" value="${account.tranDate}" pattern="yyyy/MM/dd HH:mm:ss" />
+			<td><input type="text" value="<c:out value="${regDate}"/>" name="tranDate">
+			yyyy/MM/dd HH:mm:ss 형식</td>
 		</tr>
 		<tr>
 			<th>상세내용</th>

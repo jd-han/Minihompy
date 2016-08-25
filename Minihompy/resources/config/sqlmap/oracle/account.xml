@@ -47,7 +47,7 @@
 			   DESCRIPTION = #{description},
 		   	   NOTE = #{note},		   	   
 			   AMOUNT = #{amount}
-		 where sort_no = #{sortNo}
+		 where SORT_NO = #{sortNo}
 	</update>
 	
 	<!-- 거래 삭제 -->
