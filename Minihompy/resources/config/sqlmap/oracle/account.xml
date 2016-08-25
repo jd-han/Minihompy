@@ -70,8 +70,13 @@
 	<!-- 검색하기 -->
 	<!-- ############################################################# -->
 
-	<select id="selectByCT">
-	
+	<select id="selectByCT" parameterType="">
+		select *
+		  from MINIHOMPY_ACCOUNT
+	     where USER_NO = #{USER_NO}
+	 	   and dsfaa = asdfasdf
+		   and asdklfjl = asdfansl
+			 
 	</select>
 
 

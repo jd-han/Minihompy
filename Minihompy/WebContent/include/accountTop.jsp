@@ -4,3 +4,4 @@
 <br>
 <a href="${pageContext.request.contextPath}/account/writeForm">등록</a>
 <a href="${pageContext.request.contextPath}/account/serchForm">조회</a>
+<a href='${pageContext.request.contextPath}/account/recentList'>첫화면으로</a>

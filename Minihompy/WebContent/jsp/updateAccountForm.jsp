@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<body>
 <c:import url="/include/header.jsp"/>
 <div class="container-fluid">
     <!-- Begin page content -->

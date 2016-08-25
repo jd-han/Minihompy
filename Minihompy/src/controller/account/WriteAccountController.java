@@ -21,7 +21,7 @@ import vo.AccountVO;
 
 
 @WebServlet("/account/writeAccount")
-public class WriteController extends HttpServlet {
+public class WriteAccountController extends HttpServlet {
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
