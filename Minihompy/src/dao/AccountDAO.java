@@ -39,6 +39,11 @@ public class AccountDAO {
 		return session.selectList("dao.AccountDAO.selectAccountByTerm", aSearch);
 	}
 	
+	public List<AccountVO> selectAccountByTermAndCategory(AccountSearchVO aSearch) {
+		return session.selectList("dao.AccountDAO.selectAccountByTermAndCategory", aSearch);
+	}
+
+	
 
 	
 

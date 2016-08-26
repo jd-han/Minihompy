@@ -290,27 +290,25 @@ insert into minihompy_account( SORT_NO, USER_NO, CATEGORY_NO, TRAN_DATE, PAYMENT
 values(s_minihompy_account_sort_no.nextval, 1, 54, to_date('16/06/27 15:10:17','RR/MM/DD HH24:MI:SS'), 'd', '김상식', '나라빌딩상가(102호)', 20000000);
 
 
-
-
-
-
-
-
-
-
-		select *
-		from(
-			select account.*, catagory.name		
+		select sum(account.AMOUNT), account.category_no	
 			  from MINIHOMPY_ACCOUNT account
-			  	   , minihompy_category catagory
-			 where USER_NO = 1
-			   and account.category_no = catagory.category_no	
-		  order by TRAN_DATE desc
-			)
-		where ROWNUM <= 10
-		;
+			  	   , minihompy_category category
+			 where USER_NO = 1			 
+	   	group by account.category_no
 
 
+
+		  
+		  
+			select sum(AMOUNT), name
+			  from (
+			  		select account.*, category.name		
+			 		 from MINIHOMPY_ACCOUNT account
+			  	 		  , minihompy_category category
+					 where USER_NO = 1
+					   and account.category_no = category.category_no				
+			  )			
+		  group by name
 
 
 

@@ -80,6 +80,21 @@
 			   and account.category_no = category.category_no
 		  order by TRAN_DATE desc
 	</select>
+	
+	<select id="selectAccountByTermAndCategory" parameterType="aSearch" resultMap="accountMap">
+		select sum(AMOUNT) AMOUNT, name
+		  from (				   
+				   select account.*, category.name		
+			         from MINIHOMPY_ACCOUNT account
+			  	 		  , minihompy_category category
+					 where USER_NO = #{userNo} 
+					   and TRAN_DATE <![CDATA[>=]]> #{startDay}
+					   and TRAN_DATE <![CDATA[<=]]> #{endDay}
+					   and account.category_no = category.category_no			   			
+			  )			
+		  group by name
+		  order by AMOUNT
+	</select>
 
 
 </mapper>

@@ -35,10 +35,29 @@ public class SearchAccountByTermController extends HttpServlet {
 		}
 
 		List<AccountVO> resultAccountList = new AccountDAO().selectAccountByTerm(aSearch);
+		request.setAttribute("resultAccountList", resultAccountList);
+
+		
+		int sumOfExpense = 0;
+		int sumOfRevenue = 0;
+		
+		for(AccountVO account : resultAccountList){
+			if(account.getAmount()>0){
+				sumOfRevenue += account.getAmount();
+			}else{
+				sumOfExpense += account.getAmount();
+			}
+		}
+		request.setAttribute("sumOfExpense", sumOfExpense);
+		request.setAttribute("sumOfRevenue", sumOfRevenue);
+		
+		
+		List<AccountVO> resultSumList = new AccountDAO().selectAccountByTermAndCategory(aSearch);
+		request.setAttribute("resultSumList", resultSumList);
+		
 		
 		
 
-		request.setAttribute("resultAccountList", resultAccountList);
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/resultAccountList.jsp");
 		rd.forward(request, response);
 	}

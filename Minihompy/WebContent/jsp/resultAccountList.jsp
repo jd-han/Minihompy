@@ -18,9 +18,23 @@
       	<!-- 제목 -->
         <c:import url="/include/accountTop.jsp"/>
       </div>
-      <h4>검색 결과</h4>
+      <h4>검색 결과</h4> 
       
-		<table width='80%' border='1'>
+		<table width='100%' border='1'>
+		<tr>
+			<th>유형</th>
+			<th>금액</th>
+		</tr>
+		<c:forEach var="account" items="${resultSumList}">
+			<tr>			
+			<td><c:out value="${account.categoryName}" /></a></td>
+			<td><c:out value="${account.amount}" /></td>
+			</tr>
+		</c:forEach>
+		</table>
+		
+		
+		<table width='100%' border='1'>
 		<tr>
 			<th>날짜</th>
 			<th>내역</th>
