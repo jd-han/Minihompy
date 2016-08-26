@@ -11,6 +11,7 @@
 		<typeAlias alias="friend" type="vo.FriendVO" />
 		<typeAlias alias="diary" type="vo.DiaryVO" />
 		<typeAlias alias="account" type="vo.AccountVO" />
+		<typeAlias alias="aSearch" type="vo.AccountSearchVO" />
 	</typeAliases>
 	
 	<environments default="development">

@@ -19,11 +19,11 @@
 	<select id="selectRecentAccount" parameterType="int" resultMap="accountMap">
 		select *
 		from(
-			select account.*, catagory.name		
+			select account.*, category.name		
 			  from MINIHOMPY_ACCOUNT account
-			  	   , minihompy_category catagory
+			  	   , minihompy_category category
 			 where USER_NO = #{USER_NO}
-			   and account.category_no = catagory.category_no	
+			   and account.category_no = category.category_no	
 		  order by TRAN_DATE desc
 			)
 		where ROWNUM <![CDATA[<=]]> 10
@@ -70,15 +70,16 @@
 	<!-- 검색하기 -->
 	<!-- ############################################################# -->
 
-	<select id="selectByCT" parameterType="">
-		select *
-		  from MINIHOMPY_ACCOUNT
-	     where USER_NO = #{USER_NO}
-	 	   and dsfaa = asdfasdf
-		   and asdklfjl = asdfansl
-			 
+	<select id="selectAccountByTerm" parameterType="aSearch" resultMap="accountMap">
+		select account.*, category.name		
+			  from MINIHOMPY_ACCOUNT account
+			  	   , minihompy_category category
+			 where USER_NO = #{userNo} 
+			   and TRAN_DATE <![CDATA[>=]]> #{startDay}
+			   and TRAN_DATE <![CDATA[<=]]> #{endDay}
+			   and account.category_no = category.category_no
+		  order by TRAN_DATE desc
 	</select>
-
 
 
 </mapper>

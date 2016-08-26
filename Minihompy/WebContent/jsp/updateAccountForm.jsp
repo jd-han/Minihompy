@@ -18,7 +18,7 @@
         <c:import url="/include/accountTop.jsp"/>
       </div>
       <form action="${pageContext.request.contextPath}/account/updateAccount" method="post">
-      	<table width='80%' border='1'>
+      	<table width='100%' border='1'>
 		<tr>
 			<th>거래대상</th>
 			<td><input type="text" value="<c:out value="${account.description}"/>" name="description"></td>
@@ -37,6 +37,8 @@
 		<tr>
 			<th>유형</th>
 			<td><select name="categoryNo">
+					<option disabled="disabled" selected="selected">선택하세요</option>
+					<option disabled="disabled">==소비==</option>
 					<option value="1">식비</option>
 					<option value="2">문화생활비</option>
 					<option value="3">건강관리비</option>
@@ -50,6 +52,7 @@
 					<option value="11">저축</option>
 					<option value="12">통신비</option>
 					<option value="13">기타소비</option>
+					<option disabled="disabled">==소득==</option>
 					<option value="50">월급</option>
 					<option value="51">금융소득(주식배당금)</option>
 					<option value="52">금융소득(이자)</option>

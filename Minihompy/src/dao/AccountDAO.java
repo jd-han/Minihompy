@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import util.MyAppSqlConfig;
+import vo.AccountSearchVO;
 import vo.AccountVO;
 
 public class AccountDAO {
@@ -32,6 +33,13 @@ public class AccountDAO {
 		return session.selectOne("dao.AccountDAO.selectAccountByNo", findNo);
 	}
 	
+	
+	//
+	public List<AccountVO> selectAccountByTerm(AccountSearchVO aSearch) {
+		return session.selectList("dao.AccountDAO.selectAccountByTerm", aSearch);
+	}
+	
+
 	
 
 
