@@ -70,6 +70,7 @@
 	<!-- 검색하기 -->
 	<!-- ############################################################# -->
 
+	<!-- 기간별 검색하기 -->
 	<select id="selectAccountByTerm" parameterType="aSearch" resultMap="accountMap">
 		select account.*, category.name		
 			  from MINIHOMPY_ACCOUNT account
@@ -95,6 +96,73 @@
 		  group by name
 		  order by AMOUNT
 	</select>
+	
+<!-- 	유형별 검색 -->
+	<select id="selectAccountByPayment" parameterType="aSearch" resultMap="accountMap">
+			select account.*, category.name		
+			  from MINIHOMPY_ACCOUNT account
+			  	   , minihompy_category category
+			 where USER_NO = #{userNo} 
+			   and TRAN_DATE <![CDATA[>=]]> #{startDay}
+			   and TRAN_DATE <![CDATA[<=]]> #{endDay}
+			   and account.category_no = category.category_no
+			   and PAYMENT = #{payment}
+		  order by TRAN_DATE desc	
+	</select>
 
+	<select id="selectAccountByPaymentAndCategory" parameterType="aSearch" resultMap="accountMap">
+		select sum(AMOUNT) AMOUNT, name
+		  from (				   
+			select account.*, category.name		
+			  from MINIHOMPY_ACCOUNT account
+			  	   , minihompy_category category
+			 where USER_NO = #{userNo} 
+			   and TRAN_DATE <![CDATA[>=]]> #{startDay}
+			   and TRAN_DATE <![CDATA[<=]]> #{endDay}
+			   and account.category_no = category.category_no
+			   and PAYMENT = #{payment}
+		  order by TRAN_DATE desc				   			
+			  )			
+		  group by name
+		  order by AMOUNT
+	</select>
+	
+<!-- 	카테고리별 검색 -->
+	<select id="searchAccountByCategory" parameterType="aSearch" resultMap="accountMap">
+			select account.*, category.name		
+			  from MINIHOMPY_ACCOUNT account
+			  	   , minihompy_category category
+			 where USER_NO = #{userNo}
+			   and TRAN_DATE <![CDATA[>=]]> #{startDay}
+			   and TRAN_DATE <![CDATA[<=]]> #{endDay}
+			   and account.category_no = category.category_no
+			   and account.category_no in
+			   <foreach collection="cateList" item="item" open="(" close=")" separator=",">
+			   		#{item}
+			   </foreach>			  
+		  order by TRAN_DATE desc
+	</select>
+	
+	<select id="searchAccountByCategoryAndCategory" parameterType="aSearch" resultMap="accountMap">
+		select sum(AMOUNT) AMOUNT, name
+		  from (
+				select account.*, category.name		
+				  from MINIHOMPY_ACCOUNT account
+				  	   , minihompy_category category
+				 where USER_NO = #{userNo}
+				   and TRAN_DATE <![CDATA[>=]]> #{startDay}
+				   and TRAN_DATE <![CDATA[<=]]> #{endDay}
+				   and account.category_no = category.category_no
+				   and account.category_no in
+				   <foreach collection="cateList" item="item" open="(" close=")" separator=",">
+				   		#{item}
+				   </foreach>			  
+			  order by TRAN_DATE desc
+		  			  )			
+		  group by name
+		  order by AMOUNT
+	</select>
+	
+	
 
 </mapper>

@@ -18,13 +18,16 @@ import dao.AccountDAO;
 import vo.AccountSearchVO;
 import vo.AccountVO;
 
-@WebServlet("/account/searchAccountByTerm")
-public class SearchAccountByTermController extends HttpServlet {
+@WebServlet("/account/searchAccountByPayment")
+public class SearchAccountByPaymentController extends HttpServlet {
 
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		AccountSearchVO aSearch = new AccountSearchVO();
-				
+		AccountSearchVO aSearch= new AccountSearchVO();
+		
+		aSearch.setUserNo(Integer.parseInt(request.getParameter("userNo")));
+		aSearch.setPayment(request.getParameter("payment"));
+		
 		try {
 			aSearch.setStartDay(new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("startDate")));
 			aSearch.setEndDay(new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("endDate")));
@@ -34,7 +37,7 @@ public class SearchAccountByTermController extends HttpServlet {
 			e.printStackTrace();
 		}
 
-		List<AccountVO> resultAccountList = new AccountDAO().selectAccountByTerm(aSearch);
+		List<AccountVO> resultAccountList = new AccountDAO().selectAccountByPayment(aSearch);
 		request.setAttribute("resultAccountList", resultAccountList);
 
 		
@@ -48,12 +51,15 @@ public class SearchAccountByTermController extends HttpServlet {
 				sumOfExpense += account.getAmount();
 			}
 		}
+		
 		request.setAttribute("sumOfExpense", sumOfExpense);
 		request.setAttribute("sumOfRevenue", sumOfRevenue);
 		
 		
-		List<AccountVO> resultSumList = new AccountDAO().selectAccountByTermAndCategory(aSearch);
+		List<AccountVO> resultSumList = new AccountDAO().selectAccountByPaymentAndCategory(aSearch);
 		request.setAttribute("resultSumList", resultSumList);
+		
+		
 		
 
 		RequestDispatcher rd = request.getRequestDispatcher("/jsp/resultAccountList.jsp");

@@ -34,13 +34,30 @@ public class AccountDAO {
 	}
 	
 	
-	//
+	//검색용
 	public List<AccountVO> selectAccountByTerm(AccountSearchVO aSearch) {
 		return session.selectList("dao.AccountDAO.selectAccountByTerm", aSearch);
 	}
 	
 	public List<AccountVO> selectAccountByTermAndCategory(AccountSearchVO aSearch) {
 		return session.selectList("dao.AccountDAO.selectAccountByTermAndCategory", aSearch);
+	}
+	
+	
+	
+	
+
+	public List<AccountVO> selectAccountByPayment(AccountSearchVO account) {
+		return session.selectList("dao.AccountDAO.selectAccountByPayment", account);
+	}
+	public List<AccountVO> selectAccountByPaymentAndCategory(AccountSearchVO aSearch) {
+		return session.selectList("dao.AccountDAO.selectAccountByPaymentAndCategory", aSearch);
+	}
+	public List<AccountVO> searchAccountByCategory(AccountSearchVO aSearch) {
+		return session.selectList("dao.AccountDAO.searchAccountByCategory", aSearch);
+	}
+	public List<AccountVO> searchAccountByCategoryAndCategory(AccountSearchVO aSearch) {
+		return session.selectList("dao.AccountDAO.searchAccountByCategoryAndCategory", aSearch);
 	}
 
 	

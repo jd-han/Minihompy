@@ -24,15 +24,32 @@
 		<tr>
 			<th>유형</th>
 			<th>금액</th>
+			<th>비중</th>
 		</tr>
 		<c:forEach var="account" items="${resultSumList}">
 			<tr>			
-			<td><c:out value="${account.categoryName}" /></a></td>
-			<td><c:out value="${account.amount}" /></td>
+			<td><c:out value="${account.categoryName}" /></td>
+			<fmt:formatNumber value="${account.amount}" type="currency" var="currencyTypeAmount"/>
+			<td><c:out value="${currencyTypeAmount}" /></td>
+			<c:if test="${account.amount >= 0}">
+				<fmt:formatNumber value="${account.amount / sumOfRevenue}" type="percent" var="percentAmount" pattern="0.00%"/>			
+			</c:if>
+			<c:if test="${account.amount < 0}">
+				<fmt:formatNumber value="${account.amount / sumOfExpense}" type="percent" var="percentAmount" pattern="0.00%"/>
+			</c:if>
+				<td><c:out value="${percentAmount}" /></td>			
+			
 			</tr>
 		</c:forEach>
+		<tr>
+			<td>총합</td>
+			<td colspan="2">
+			<fmt:formatNumber value="${sumOfExpense+sumOfRevenue}" type="currency" var="currencyTypeAmount"></fmt:formatNumber>
+			<c:out value="${currencyTypeAmount}" />
+			</td>
+		</tr>
 		</table>
-		
+		<p>
 		
 		<table width='100%' border='1'>
 		<tr>
@@ -47,7 +64,8 @@
 				<c:out value="${regDate}" />
 			</td>
 			<td><a href='detailAccount?no=<c:out value="${account.sortNo}" />'><c:out value="${account.description}" /></a></td>
-			<td><c:out value="${account.amount}" /></td>
+			<fmt:formatNumber value="${account.amount}" type="currency" var="currencyTypeAmount"></fmt:formatNumber>
+			<td><c:out value="${currencyTypeAmount}" /></td>
 			</tr>
 		</c:forEach>
 		

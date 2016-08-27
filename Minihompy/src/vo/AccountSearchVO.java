@@ -1,12 +1,15 @@
 package vo;
 
 import java.util.Date;
+import java.util.List;
 
 public class AccountSearchVO {
 	protected int userNo;
 	protected Date startDay;
 	protected Date endDay;
 	protected Date duDay;
+	private String payment;
+	private List<Integer> cateList;
 	
 	public Date getStartDay() {
 		return startDay;
@@ -32,6 +35,23 @@ public class AccountSearchVO {
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}
+	public String getPayment() {
+		return payment;
+	}
+	public void setPayment(String payment) {
+		this.payment = payment;
+	}
+	public List<Integer> getCateList() {
+		return cateList;
+	}
+	public void setCateList(List<Integer> cateList) {
+		this.cateList = cateList;
+	}
+	
+
+
+
+	
 	
 	
 }

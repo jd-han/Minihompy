@@ -37,7 +37,7 @@ width: 100px;
 				<input type="hidden" name="userNo" value="1">
 				<table class="searchTable">
 					<tr>
-					<th>특정기간 조회</th>
+					<th>기간 조회</th>
 					<td>
 						<input type="text" name="startDate">
 						~
@@ -46,41 +46,34 @@ width: 100px;
 					</td>
 					</tr>
 				</table>
+				<hr>
 			</form>
-			<form action="${pageContext.request.contextPath}/account/searchAccount" method="post">
+			<form action="${pageContext.request.contextPath}/account/searchAccountByPayment" method="post">
+			
+			
 				<!-- 
 				<input type="hidden" name="userNo" value="${LOGIN_USER_INFO.userNo}">
 				 -->
 				<input type="hidden" name="userNo" value="1">
-		
-				<table class="searchTable">
-					<tr>
-					<th>기간 조회</th>
-					<td>
-						<input type="text" name="day">
-						<input type="submit" value="조회">
-						<h6>yyyy/MM양식으로 입력하세요</h6>
-					</td>
-					</tr>
-				</table>				
-			</form>
-			<form action="${pageContext.request.contextPath}/account/searchAccount" method="post">
-				<!-- 
-				<input type="hidden" name="userNo" value="${LOGIN_USER_INFO.userNo}">
-				 -->
-				<input type="hidden" name="userNo" value="1">
+				
+				
 				<table class="searchTable">
 					<tr>
 					<th>유형별 조회</th>
 					<td>
 						<input type="radio" name="payment" value="c">현금
 						<input type="radio" name="payment" value="d">카드 등 전자거래
-						<input type="submit" value="조회">
+						<br>
+						<input type="text" name="startDate" value="">
+						~
+						<input type="text" name="endDate" value=""> <input type="submit" value="조회">
+						<h6>yyyy/MM/dd 양식으로 입력하세요</h6>
 					</td>
 					</tr>
 				</table>				
 			</form>
-			<form action="${pageContext.request.contextPath}/account/searchAccount" method="post">
+				<hr>
+			<form action="${pageContext.request.contextPath}/account/searchAccountByCategory" method="post">
 				<!-- 
 				<input type="hidden" name="userNo" value="${LOGIN_USER_INFO.userNo}">
 				 -->
@@ -108,11 +101,17 @@ width: 100px;
 						<input type="checkbox" name="categoryNo" value="53" id="categoryNo53"><label for="categoryNo53">금융소득(계약만기)</label>
 						<input type="checkbox" name="categoryNo" value="54" id="categoryNo54"><label for="categoryNo54">임대소득</label>
 						<input type="checkbox" name="categoryNo" value="55" id="categoryNo55"><label for="categoryNo55">기타소득</label>
-						<input type="submit" value="조회">
+					<br>
+					기간
+						<input type="text" name="startDate" value="">
+						~
+						<input type="text" name="endDate" value=""> <input type="submit" value="조회">
+						<h6>yyyy/MM/dd 양식으로 입력하세요</h6>
 					<td>
 					</tr>
 				</table>
 			</form>
+				<hr>
 		</div>
 		<footer class="footer">
 		<div class="container">
