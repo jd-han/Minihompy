@@ -16,6 +16,10 @@ width: 100%;
 width: 100px;
 }
 
+label{
+width: 150px;
+}
+
 
 </style>
 
@@ -81,27 +85,28 @@ width: 100px;
 				<table class="searchTable">
 					<tr>
 					<th>항목별 조회</th>
-					<td>
-						<input type="checkbox" name="categoryNo" value="1" id="categoryNo1"><label for="categoryNo1">식비</label>
-						<input type="checkbox" name="categoryNo" value="2" id="categoryNo2"><label for="categoryNo2">문화생활비</label>
-						<input type="checkbox" name="categoryNo" value="3" id="categoryNo3"><label for="categoryNo3">건강관리비</label>
-						<input type="checkbox" name="categoryNo" value="4" id="categoryNo4"><label for="categoryNo4">의료미용비</label>
-						<input type="checkbox" name="categoryNo" value="5" id="categoryNo5"><label for="categoryNo5">교통비</label>
-						<input type="checkbox" name="categoryNo" value="6" id="categoryNo6"><label for="categoryNo6">차량유지비</label>
-						<input type="checkbox" name="categoryNo" value="7" id="categoryNo7"><label for="categoryNo7">학비</label>
-						<input type="checkbox" name="categoryNo" value="8" id="categoryNo8"><label for="categoryNo8">사회생활비</label>
-						<input type="checkbox" name="categoryNo" value="9" id="categoryNo9"><label for="categoryNo9">유흥비</label>
-						<input type="checkbox" name="categoryNo" value="10" id="categoryNo10"><label for="categoryNo10">금융보험비</label>
-						<input type="checkbox" name="categoryNo" value="11" id="categoryNo11"><label for="categoryNo11">저축</label>
-						<input type="checkbox" name="categoryNo" value="12" id="categoryNo12"><label for="categoryNo12">통신비</label>
-						<input type="checkbox" name="categoryNo" value="13" id="categoryNo13"><label for="categoryNo13">기타소비</label>
-						<input type="checkbox" name="categoryNo" value="50" id="categoryNo50"><label for="categoryNo50">월급</label>
-						<input type="checkbox" name="categoryNo" value="51" id="categoryNo51"><label for="categoryNo51">금융소득(주식배당금)</label>
-						<input type="checkbox" name="categoryNo" value="52" id="categoryNo52"><label for="categoryNo52">금융소득(이자)</label>
-						<input type="checkbox" name="categoryNo" value="53" id="categoryNo53"><label for="categoryNo53">금융소득(계약만기)</label>
-						<input type="checkbox" name="categoryNo" value="54" id="categoryNo54"><label for="categoryNo54">임대소득</label>
-						<input type="checkbox" name="categoryNo" value="55" id="categoryNo55"><label for="categoryNo55">기타소득</label>
+					<td class="">
+						<label for="categoryNo1"><input type="checkbox" name="categoryNo" value="1" id="categoryNo1">식비</label>
+						<label for="categoryNo2"><input type="checkbox" name="categoryNo" value="2" id="categoryNo2">문화생활비</label>
+						<label for="categoryNo3"><input type="checkbox" name="categoryNo" value="3" id="categoryNo3">건강관리비</label>
+						<label for="categoryNo4"><input type="checkbox" name="categoryNo" value="4" id="categoryNo4">의료미용비</label>
+						<label for="categoryNo5"><input type="checkbox" name="categoryNo" value="5" id="categoryNo5">교통비</label>
+						<label for="categoryNo6"><input type="checkbox" name="categoryNo" value="6" id="categoryNo6">차량유지비</label>
+						<label for="categoryNo7"><input type="checkbox" name="categoryNo" value="7" id="categoryNo7">학비</label>
+						<label for="categoryNo8"><input type="checkbox" name="categoryNo" value="8" id="categoryNo8">사회생활비</label>
+						<label for="categoryNo9"><input type="checkbox" name="categoryNo" value="9" id="categoryNo9">유흥비</label>
+						<label for="categoryNo10"><input type="checkbox" name="categoryNo" value="10" id="categoryNo10">금융보험비</label>
+						<label for="categoryNo11"><input type="checkbox" name="categoryNo" value="11" id="categoryNo11">저축</label>
+						<label for="categoryNo12"><input type="checkbox" name="categoryNo" value="12" id="categoryNo12">통신비</label>
+						<label for="categoryNo13"><input type="checkbox" name="categoryNo" value="13" id="categoryNo13">기타소비</label>
+						<label for="categoryNo50"><input type="checkbox" name="categoryNo" value="50" id="categoryNo50">월급</label>
+						<label for="categoryNo51"><input type="checkbox" name="categoryNo" value="51" id="categoryNo51">금융소득(주식배당)</label>
+						<label for="categoryNo52"><input type="checkbox" name="categoryNo" value="52" id="categoryNo52">금융소득(이자)</label>
+						<label for="categoryNo53"><input type="checkbox" name="categoryNo" value="53" id="categoryNo53">금융소득(계약만기)</label>
+						<label for="categoryNo54"><input type="checkbox" name="categoryNo" value="54" id="categoryNo54">임대소득</label>
+						<label for="categoryNo55"><input type="checkbox" name="categoryNo" value="55" id="categoryNo55">기타소득</label>
 					<br>
+					<hr>
 					기간
 						<input type="text" name="startDate" value="">
 						~

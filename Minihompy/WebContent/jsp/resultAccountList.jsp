@@ -8,6 +8,93 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title></title>
+<style type="text/css">
+table#category{
+width: 100%;
+}
+
+table#category tr:HOVER{
+font-weight: bold;
+}
+
+table#category th{
+text-align: center;
+font-size: 16px;
+}
+
+table#category tr{
+height: 25px;
+font-size: 15px;
+line-height: 25px;
+}
+
+a{
+text-decoration: none;
+}
+
+.date{
+text-align: center;
+}
+.description{
+text-align: center;
+}
+
+table#category tr td.categoryName{
+text-align: center;
+}
+table#category tr td.won{
+text-align: right;
+}
+table#category tr td.amount{
+text-align: right;
+}
+table#category tr td.percent{
+text-align: right;
+}
+table#category tr.total td:first-child{
+text-align: center;
+}
+table#category tr.total{
+font-weight: bold;
+}
+
+
+
+
+
+
+table#list{
+width: 100%;
+}
+
+table#list th{
+text-align: center;
+font-size: 16px;
+}
+
+table#list tr{
+height: 25px;
+font-size: 15px;
+line-height: 25px;
+}
+
+table#list tr:HOVER{
+font-weight: bold;
+cursor: pointer;
+}
+
+table#list tr td.won{
+text-align: right;
+}
+table#list tr td.amount{
+text-align: right;
+}
+
+
+
+
+</style>
+
 </head>
 <body>
 <c:import url="/include/header.jsp"/>
@@ -20,52 +107,67 @@
       </div>
       <h4>검색 결과</h4> 
       
-		<table width='100%' border='1'>
+		<table id="category" class="table table-striped">
 		<tr>
 			<th>유형</th>
-			<th>금액</th>
+			<th colspan="2">금액</th>
 			<th>비중</th>
 		</tr>
 		<c:forEach var="account" items="${resultSumList}">
 			<tr>			
-			<td><c:out value="${account.categoryName}" /></td>
-			<fmt:formatNumber value="${account.amount}" type="currency" var="currencyTypeAmount"/>
-			<td><c:out value="${currencyTypeAmount}" /></td>
+			<td class ="categoryName"><c:out value="${account.categoryName}" /></td>
+			
+			<td class="won">
+			&#8361
+			</td>
+			<td class="amount">
+			<fmt:formatNumber value="${account.amount}" type="number" var="currencyTypeAmount"/>
+			<c:out value="${currencyTypeAmount}" />
+
 			<c:if test="${account.amount >= 0}">
 				<fmt:formatNumber value="${account.amount / sumOfRevenue}" type="percent" var="percentAmount" pattern="0.00%"/>			
 			</c:if>
 			<c:if test="${account.amount < 0}">
 				<fmt:formatNumber value="${account.amount / sumOfExpense}" type="percent" var="percentAmount" pattern="0.00%"/>
 			</c:if>
-				<td><c:out value="${percentAmount}" /></td>			
-			
+				<td class="percent"><c:out value="${percentAmount}" /></td>			
 			</tr>
 		</c:forEach>
-		<tr>
+		<tr class="total">
 			<td>총합</td>
-			<td colspan="2">
-			<fmt:formatNumber value="${sumOfExpense+sumOfRevenue}" type="currency" var="currencyTypeAmount"></fmt:formatNumber>
+			<td class="won">
+			&#8361
+			</td>
+			<td class="amount">
+			<fmt:formatNumber value="${sumOfExpense+sumOfRevenue}" type="number" var="currencyTypeAmount"/>
 			<c:out value="${currencyTypeAmount}" />
 			</td>
+			<td></td>
 		</tr>
 		</table>
 		<p>
 		
-		<table width='100%' border='1'>
+<table id="list" class="table table-striped table-hover">
 		<tr>
 			<th>날짜</th>
 			<th>내역</th>
-			<th>금액</th>
+			<th colspan="2">금액</th>
 		</tr>
 		<c:forEach var="account" items="${resultAccountList}">
-			<tr>
-			<td>
+			<tr onclick="location.href='detailAccount?no=<c:out value="${account.sortNo}"/>'">
+			<td class="date">
 				<fmt:formatDate var="regDate" value="${account.tranDate}" pattern="yyyy-MM-dd"/>
-				<c:out value="${regDate}" />
+				<c:out value="${regDate}"/>
 			</td>
-			<td><a href='detailAccount?no=<c:out value="${account.sortNo}" />'><c:out value="${account.description}" /></a></td>
-			<fmt:formatNumber value="${account.amount}" type="currency" var="currencyTypeAmount"></fmt:formatNumber>
-			<td><c:out value="${currencyTypeAmount}" /></td>
+			<td class="description"><c:out value="${account.description}" /></td>			
+			<td class="won">
+			&#8361
+			</td>
+			<td class="amount">
+			<fmt:formatNumber value="${account.amount}" type="number" var="currencyTypeAmount"/>
+			<c:out value="${currencyTypeAmount}" />
+			</td>			
+		
 			</tr>
 		</c:forEach>
 		
@@ -82,5 +184,22 @@
     </footer>
 </div>
 <%@ include file="/include/bottom.jsp" %>
+
+<script type="text/javascript">
+		var amountArr = document.querySelectorAll(".amount")
+	
+	for(var i=0; i<amountArr.length; i++){
+		var amount = amountArr[i]
+		console.dir(amount)
+		console.log(parseInt(amount.innerText))
+		if(parseInt(amount.innerText)<0){
+			amount.style="color: red"
+		}else{
+			amount.style="color: blue"
+		}
+	}
+</script>
+
+
 </body>
 </html>

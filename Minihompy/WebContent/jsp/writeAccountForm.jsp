@@ -7,6 +7,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
+<style type="text/css">
+form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border
+  color: #333;
+  border-radius: 3px;
+  height: auto;
+  min-height: 200px;
+  padding: 50px 10px 10px 10px;
+}
+</style>
 </head>
 <body>
 <body>
@@ -19,7 +31,7 @@
         <c:import url="/include/accountTop.jsp"/>
       </div>
       <form action="${pageContext.request.contextPath}/account/writeAccount" method="post">
-      	<table>
+      	<table class="table">
 		<tr>
 			<th>거래대상</th>
 			<td><input type="text" name="description"></td>
@@ -38,6 +50,8 @@
 		<tr>
 			<th>유형</th>
 			<td><select name="categoryNo">
+					<option disabled="disabled" selected="selected">선택하세요</option>
+					<option disabled="disabled">==소비==</option>
 					<option value="1">식비</option>
 					<option value="2">문화생활비</option>
 					<option value="3">건강관리비</option>
@@ -51,6 +65,7 @@
 					<option value="11">저축</option>
 					<option value="12">통신비</option>
 					<option value="13">기타소비</option>
+					<option disabled="disabled">==소득==</option>
 					<option value="50">월급</option>
 					<option value="51">금융소득(주식배당금)</option>
 					<option value="52">금융소득(이자)</option>
@@ -72,8 +87,10 @@
 		</tr>
 		</table>
 		<!-- 유저번호를 강제로 1을 줌. 나중에 동적 할당 -->
-		<input type="hidden" name="userNo" value="1">		
+		<input type="hidden" name="userNo" value="1">
+		<div>	
 		<button type="submit">입력</button>
+		</div>	
       </form>
     </div>
     <footer class="footer">
